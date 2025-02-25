@@ -1,162 +1,140 @@
-# Руководство по использованию DEP Framework
+# DEP Framework Usage Guide
 
-## Содержание
+## Contents
 
-1. [Установка](#установка)
-2. [Настройка](#настройка)
-3. [Использование Neuro-Solidity Auditor](#использование-neuro-solidity-auditor)
-4. [Использование Proof-of-Humanism](#использование-proof-of-humanism)
-5. [Использование Ethical Mirror Engine](#использование-ethical-mirror-engine)
-6. [Примеры использования](#примеры-использования)
-7. [Часто задаваемые вопросы](#часто-задаваемые-вопросы)
+1. [Installation](#installation)
+2. [Setup](#setup)
+3. [Using Neuro-Solidity Auditor](#using-neuro-solidity-auditor)
+4. [Using Proof-of-Humanism](#using-proof-of-humanism)
+5. [Using Ethical Mirror Engine](#using-ethical-mirror-engine)
+6. [Usage Examples](#usage-examples)
+7. [Frequently Asked Questions](#frequently-asked-questions)
 
-## Установка
+## Installation
 
-### Требования
+### Requirements
 
-- Node.js 16.x или выше
-- npm 8.x или выше
-- TypeScript 4.5.x или выше
-- Solana CLI (опционально, для работы с блокчейном Solana)
+- Node.js 16.x or later
+- npm 8.x or later
+- TypeScript 4.5.x or later
+- Solana CLI (optional, for working with Solana blockchain)
 
-### Установка из npm
+### Installation via npm
 
 ```bash
 npm install dep-framework
 ```
 
-### Установка из исходного кода
+### Installation from Source Code
 
 ```bash
-# Клонирование репозитория
+# Clone the repository
 git clone https://github.com/dep-framework/dep-framework.git
 cd dep-framework
 
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Сборка проекта
+# Build the project
 npm run build
 ```
 
-## Настройка
+## Setup
 
-### Настройка переменных окружения
+### Environment Variable Configuration
 
-Скопируйте файл `.env.example` в `.env` и заполните необходимые значения:
+Copy the `.env.example` file to `.env` and fill in the required values:
 
 ```bash
 cp .env.example .env
 ```
 
-Пример содержимого файла `.env`:
+Example `.env` file:
 
 ```
-# Настройки Solana
+# Solana Settings
 SOLANA_NETWORK=devnet
 SOLANA_RPC_URL=https://api.devnet.solana.com
 
-# Ключи API
+# API Keys
 ETHERSCAN_API_KEY=your_etherscan_api_key_here
 SOLSCAN_API_KEY=your_solscan_api_key_here
 
-# Настройки NeuroSolidityAuditor
+# NeuroSolidityAuditor Settings
 MODEL_PATH=./models/neuro_auditor_model
 CONTRACTS_DB_PATH=./data/verified_contracts
 
-# Настройки ProofOfHumanism
+# ProofOfHumanism Settings
 ETHICAL_THRESHOLD=75
 DAO_CONTRACT_ADDRESS=your_dao_contract_address_here
 ```
 
-### Инициализация фреймворка
+### Initializing the Framework
 
 ```typescript
 import { DEPFramework } from 'dep-framework';
 
-// Создание экземпляра фреймворка
+// Create an instance of the framework
 const framework = new DEPFramework();
 
-// Инициализация и запуск
+// Initialize and start the framework
 await framework.start();
 
-// Получение компонентов
+// Get framework components
 const neuroAuditor = framework.getNeuroAuditor();
 const proofOfHumanism = framework.getProofOfHumanism();
 const ethicalMirror = framework.getEthicalMirror();
 ```
 
-## Использование Neuro-Solidity Auditor
+## Using Neuro-Solidity Auditor
 
-### Аудит смарт-контракта
+### Auditing a Smart Contract
 
 ```typescript
 import { NeuroSolidityAuditor } from 'dep-framework';
 
-// Создание экземпляра аудитора
+// Create an instance of the auditor
 const auditor = new NeuroSolidityAuditor();
 await auditor.initialize();
 
-// Путь к файлу контракта
+// Path to the contract file
 const contractPath = './contracts/MyContract.sol';
 
-// Аудит контракта
+// Perform an audit
 const auditResult = await auditor.auditContract(contractPath);
 
-// Вывод результатов
-console.log(`Общий скор безопасности: ${auditResult.score}/100`);
-console.log(`Найдено уязвимостей: ${auditResult.vulnerabilities.length}`);
-
-// Вывод найденных уязвимостей
-for (const vuln of auditResult.vulnerabilities) {
-  console.log(`[${vuln.severity.toUpperCase()}] ${vuln.name}`);
-  console.log(`Строки: ${vuln.lineStart}-${vuln.lineEnd}`);
-  console.log(`Описание: ${vuln.description}`);
-  console.log(`Рекомендация: ${vuln.recommendation}`);
-}
+// Output results
+console.log(`Security Score: ${auditResult.score}/100`);
+console.log(`Vulnerabilities Found: ${auditResult.vulnerabilities.length}`);
 ```
 
-### Генерация тест-кейсов
+### Generating Test Cases
 
 ```typescript
-// Генерация тест-кейсов для контракта
+// Generate test cases for the contract
 const testCases = await auditor.generateTestCases(contractPath);
 
-// Вывод тест-кейсов
+// Output test cases
 for (const test of testCases) {
-  console.log(`Тест: ${test.description}`);
-  console.log(`Входные данные: ${JSON.stringify(test.inputs)}`);
-  console.log(`Ожидаемый результат: ${JSON.stringify(test.expectedOutputs)}`);
-  console.log(`Edge-case: ${test.edgeCase ? 'Да' : 'Нет'}`);
+  console.log(`Test: ${test.description}`);
+  console.log(`Inputs: ${JSON.stringify(test.inputs)}`);
+  console.log(`Expected Outputs: ${JSON.stringify(test.expectedOutputs)}`);
 }
 ```
 
-### Генерация патчей для уязвимостей
+## Using Proof-of-Humanism
 
-```typescript
-// Генерация патча для первой найденной уязвимости
-if (auditResult.vulnerabilities.length > 0) {
-  const vulnerability = auditResult.vulnerabilities[0];
-  const patch = await auditor.generatePatch(vulnerability, contractPath);
-  
-  console.log(`Патч для уязвимости ${vulnerability.name}:`);
-  console.log(patch);
-}
-```
-
-## Использование Proof-of-Humanism
-
-### Валидация транзакции
+### Transaction Validation
 
 ```typescript
 import { ProofOfHumanism } from 'dep-framework';
 import * as web3 from '@solana/web3.js';
 
-// Создание экземпляра ProofOfHumanism
+// Create an instance of ProofOfHumanism
 const poh = new ProofOfHumanism();
 await poh.initialize();
 
-// Создание транзакции Solana
+// Create a Solana transaction
 const transaction = new web3.Transaction().add(
   web3.SystemProgram.transfer({
     fromPubkey: new web3.PublicKey('senderPublicKey'),
@@ -165,125 +143,73 @@ const transaction = new web3.Transaction().add(
   })
 );
 
-// Валидация транзакции
+// Validate the transaction
 const validationResult = poh.validateTransaction(transaction);
 
-console.log(`Этический скор: ${validationResult.ethicalScore}/100`);
-console.log(`Результат валидации: ${validationResult.validationResult ? 'ПРИНЯТА' : 'ОТКЛОНЕНА'}`);
-console.log(`Причина: ${validationResult.validationReason}`);
+console.log(`Ethical Score: ${validationResult.ethicalScore}/100`);
+console.log(`Validation Result: ${validationResult.validationResult ? 'ACCEPTED' : 'REJECTED'}`);
 ```
 
-### Получение и обновление порога этичности
+## Using Ethical Mirror Engine
 
-```typescript
-// Получение текущего порога этичности
-const threshold = poh.getEthicalThreshold();
-console.log(`Текущий порог этичности: ${threshold.value}`);
-
-// Предложение нового порога этичности
-const proposerId = 'validator123';
-const newThresholdValue = 80;
-const proposal = await poh.proposeNewThreshold(proposerId, newThresholdValue);
-
-// Обновление порога этичности
-poh.updateEthicalThreshold(proposal);
-```
-
-### Голосование валидаторов
-
-```typescript
-// Голосование валидатора за транзакцию
-const validatorId = 'validator123';
-const vote = true; // За транзакцию
-const ethicalScore = 85; // Оценка этичности от валидатора
-
-const voteResult = await poh.submitValidatorVote(validatorId, transaction, vote, ethicalScore);
-console.log(`Валидатор ${voteResult.validatorId} проголосовал ${voteResult.vote ? 'за' : 'против'}`);
-```
-
-## Использование Ethical Mirror Engine
-
-### Анализ этичности кода
+### Code Ethics Analysis
 
 ```typescript
 import { EthicalMirrorEngine } from 'dep-framework';
 import * as fs from 'fs';
 
-// Создание экземпляра EthicalMirrorEngine
+// Create an instance of EthicalMirrorEngine
 const mirror = new EthicalMirrorEngine();
 await mirror.initialize();
 
-// Чтение кода контракта
+// Read contract code
 const contractPath = './contracts/MyContract.sol';
 const contractCode = fs.readFileSync(contractPath, 'utf-8');
 
-// Анализ этичности кода
+// Analyze ethics of the code
 const ethicsAnalysis = mirror.analyzeEthics(contractCode);
 
-console.log(`Этический скор: ${ethicsAnalysis.ethicalScore}/100`);
-console.log(`Найдено проблем: ${ethicsAnalysis.issues.length}`);
-
-// Вывод найденных проблем
-for (const issue of ethicsAnalysis.issues) {
-  console.log(`[${issue.severity.toUpperCase()}] ${issue.term}: ${issue.description}`);
-}
+console.log(`Ethical Score: ${ethicsAnalysis.ethicalScore}/100`);
+console.log(`Issues Found: ${ethicsAnalysis.issues.length}`);
 ```
 
-### Создание этического двойника кода
+### Creating an Ethical Twin of the Code
 
 ```typescript
-// Создание этического двойника кода
+// Generate an ethical twin of the contract code
 const transformResult = mirror.ethicalMirror(contractCode);
 
-console.log(`Выполнено ${transformResult.transformations.length} трансформаций`);
+console.log(`Transformations Applied: ${transformResult.transformations.length}`);
 
-// Вывод трансформаций
-for (const transform of transformResult.transformations) {
-  console.log(`${transform.type}: "${transform.original}" -> "${transform.transformed}"`);
-}
-
-// Сохранение трансформированного кода
+// Save transformed code
 const outputPath = './contracts/EthicalMyContract.sol';
 mirror.saveTransformedCode(transformResult, outputPath);
 ```
 
-### Добавление новых паттернов трансформации
+## Usage Examples
 
-```typescript
-// Добавление нового этического паттерна
-mirror.addTransformationPattern('malicious', 'benevolent', 'ethical');
+Examples of DEP Framework usage can be found in the `examples/` directory:
 
-// Добавление нового паттерна безопасности
-mirror.addTransformationPattern('unsafe', 'safe', 'security');
-```
+- `demo.ts` - Demonstration of the framework's core features
+- `DrainContract.sol` - Example of a vulnerable contract for testing
 
-## Примеры использования
-
-В директории `examples` находятся примеры использования DEP Framework:
-
-- `demo.ts` - демонстрация основных возможностей фреймворка
-- `DrainContract.sol` - пример контракта с уязвимостями для тестирования
-
-Запуск демонстрационного примера:
+Run the demonstration example:
 
 ```bash
 npm run example
 ```
 
-## Часто задаваемые вопросы
+## Frequently Asked Questions
 
-### Как обновить модель нейросети?
+### How do I update the neural network model?
 
-Модель нейросети для Neuro-Solidity Auditor хранится в директории, указанной в переменной окружения `MODEL_PATH`. Для обновления модели замените файлы в этой директории на новые.
+The neural network model for the Neuro-Solidity Auditor is stored in the directory specified by the `MODEL_PATH` environment variable. To update the model, replace the files in this directory with the new model.
 
-### Как настроить порог этичности?
+### How do I configure the ethical threshold?
 
-Порог этичности для Proof-of-Humanism можно настроить через DAO голосование или напрямую через метод `updateEthicalThreshold()`.
+The ethical threshold for Proof-of-Humanism can be set through DAO voting or directly via the `updateEthicalThreshold()` method.
 
-### Как добавить новые паттерны трансформации?
+### How do I integrate DEP Framework into an existing project?
 
-Новые паттерны трансформации для Ethical Mirror Engine можно добавить через метод `addTransformationPattern()` или через файл конфигурации, указанный в переменной окружения `TRANSFORMATION_PATTERNS_PATH`.
+DEP Framework can be integrated into an existing project via the npm package or directly from the source code. For CI/CD pipeline integration, the framework’s CLI interface can be used.
 
-### Как интегрировать DEP Framework с существующим проектом?
-
-DEP Framework можно интегрировать с существующим проектом через npm-пакет или напрямую из исходного кода. Для интеграции с CI/CD пайплайном можно использовать CLI-интерфейс фреймворка.
