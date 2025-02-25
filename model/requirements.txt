@@ -1,0 +1,24 @@
+numpy>=1.20.0
+tensorflow>=2.8.0
+scikit-learn>=1.0.0
+pandas>=1.3.0
+matplotlib>=3.4.0
+solc-select>=0.2.0
+py-solc-x>=1.1.0
+web3>=5.25.0
+slither-analyzer>=0.8.0
+mythril>=0.22.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+tqdm>=4.62.0
+moonlight-ai>=0.1.0  # Оптимизатор Moonlight от MoonshotAI
+
+# Работа с Solidity
+py-solc-x>=1.1.0
+web3>=5.25.0
+
+# Анализ графов
+networkx>=2.6.0
+
+# Логирование и утилиты
+python-dotenv>=0.19.0

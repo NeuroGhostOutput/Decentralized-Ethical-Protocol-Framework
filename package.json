@@ -1,0 +1,52 @@
+{
+  "name": "dep-framework",
+  "version": "0.1.0",
+  "description": "Decentralized Ethical Protocol Framework for Solana",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "dev": "ts-node src/index.ts",
+    "example": "node scripts/run-demo.js",
+    "demo": "node scripts/run-demo.js",
+    "audit": "ts-node src/index.ts audit",
+    "transform": "ts-node src/index.ts transform",
+    "validate": "ts-node src/index.ts validate",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "solana",
+    "blockchain",
+    "ethics",
+    "security",
+    "audit",
+    "neural-network"
+  ],
+  "author": "NeuroGhost",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.87.0",
+    "@solana/spl-token": "^0.3.8",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.2",
+    "tensorflow": "^2.13.0",
+    "coq-js": "^0.1.0",
+    "isabelle-js": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.3",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
+  }
+}
