@@ -1,184 +1,88 @@
-# Архитектура DEP Framework
+# DEP Framework Architecture
 
-## Обзор
+## Overview
 
-DEP Framework (Decentralized Ethical Protocol Framework) - это инновационная экосистема для Solana, объединяющая передовые технологии нейросетей, этический консенсус и формальную верификацию для создания более безопасной и этичной блокчейн-среды.
+DEP Framework (Decentralized Ethical Protocol Framework) is an innovative ecosystem for Solana, combining advanced neural network technologies, ethical consensus, and formal verification to create a safer and more ethical blockchain environment.
 
-Архитектура DEP Framework состоит из трех основных компонентов:
+## DEP Framework Architecture
 
-1. **Neuro-Solidity Auditor** - нейросеть для аудита смарт-контрактов
-2. **Proof-of-Humanism Consensus** - новый механизм консенсуса с этической составляющей
-3. **Ethical Mirror Engine** - симулятор, создающий "этические двойники" кода
+The DEP Framework consists of three key components:
 
-## Диаграмма архитектуры
+- **Neuro-Solidity Auditor** - A neural network for smart contract auditing.
+- **Proof-of-Humanism Consensus** - A new consensus mechanism incorporating ethical considerations.
+- **Ethical Mirror Engine** - A simulator creating "ethical twins" of code.
 
-```
-+----------------------------------+
-|         DEP Framework            |
-+----------------------------------+
-|                                  |
-|  +----------------------------+  |
-|  |   Neuro-Solidity Auditor   |  |
-|  +----------------------------+  |
-|  | - Анализ AST-деревьев      |  |
-|  | - Генерация тест-кейсов    |  |
-|  | - Автоматические патчи     |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Proof-of-Humanism        |  |
-|  +----------------------------+  |
-|  | - Этическая валидация      |  |
-|  | - DAO голосование          |  |
-|  | - Индекс гуманизма         |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Ethical Mirror Engine    |  |
-|  +----------------------------+  |
-|  | - Трансформация кода       |  |
-|  | - Этический анализ         |  |
-|  | - Паттерны трансформации   |  |
-|  +----------------------------+  |
-|                                  |
-+----------------------------------+
+### Architecture Diagram
+
+```mermaid
+graph TD;
+    A[DEP Framework] -->|AST Parsing| B(Neuro-Solidity Auditor);
+    B -->|Vulnerability Detection| C{Risk Assessment};
+    C -->|Safe| D[Deploy to Blockchain];
+    C -->|Unsafe| E[Generate Security Patch];
+    E --> F[Formal Verification];
+    A --> G(Proof-of-Humanism Consensus);
+    G -->|Ethical Validation| H{DAO Governance};
+    A --> I(Ethical Mirror Engine);
+    I -->|Code Transformation| J[Secure Smart Contract];
 ```
 
-## Компоненты
+## Components
 
 ### Neuro-Solidity Auditor
 
-Нейросеть, обучаемая на 17,000+ верифицированных контрактах, способная:
+A neural network trained on over 17,000 verified contracts, capable of:
 
-- Предсказывать уязвимости через топологический анализ AST-деревьев
-- Генерировать тест-кейсы с покрытием 98.7% edge-cases
-- Автоматически предлагать патчи с формальным доказательством безопасности
+- Predicting vulnerabilities through topological AST tree analysis.
+- Generating test cases with 98.7% edge-case coverage.
+- Automatically suggesting patches with formal security proofs.
 
-#### Архитектура Neuro-Solidity Auditor
-
-```
-+----------------------------------+
-|      Neuro-Solidity Auditor      |
-+----------------------------------+
-|                                  |
-|  +----------------------------+  |
-|  |   AST Parser               |  |
-|  +----------------------------+  |
-|  | - Парсинг контрактов       |  |
-|  | - Построение AST-деревьев  |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Vulnerability Detector   |  |
-|  +----------------------------+  |
-|  | - Нейросетевой анализ      |  |
-|  | - Паттерны уязвимостей     |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Test Case Generator      |  |
-|  +----------------------------+  |
-|  | - Edge-case генерация      |  |
-|  | - Фаззинг                  |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Patch Generator          |  |
-|  +----------------------------+  |
-|  | - Автоматические патчи     |  |
-|  | - Формальная верификация   |  |
-|  +----------------------------+  |
-|                                  |
-+----------------------------------+
+```mermaid
+graph TD;
+    X[Smart Contract] -->|Parsing| Y{AST Parser};
+    Y -->|Analysis| Z[Vulnerability Detector];
+    Z -->|Test Generation| W[Test Case Generator];
+    W -->|Patch Creation| V[Patch Generator];
 ```
 
 ### Proof-of-Humanism Consensus
 
-Новый механизм консенсуса, где валидаторы оценивают транзакции не только на криптографическую корректность, но и на соответствие этическим нормам, определяемым сообществом через DAO.
+A novel consensus mechanism where validators assess transactions not only for cryptographic correctness but also for ethical compliance, determined by the community via DAO governance.
 
-#### Архитектура Proof-of-Humanism
-
-```
-+----------------------------------+
-|      Proof-of-Humanism           |
-+----------------------------------+
-|                                  |
-|  +----------------------------+  |
-|  |   Ethical Validator        |  |
-|  +----------------------------+  |
-|  | - Валидация транзакций     |  |
-|  | - Расчет индекса гуманизма |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   DAO Governance           |  |
-|  +----------------------------+  |
-|  | - Голосование              |  |
-|  | - Управление порогом       |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Transaction Analyzer     |  |
-|  +----------------------------+  |
-|  | - Анализ паттернов         |  |
-|  | - Оценка этичности         |  |
-|  +----------------------------+  |
-|                                  |
-+----------------------------------+
+```mermaid
+pie title Consensus Decision Breakdown
+    "Cryptographic Validity" : 60
+    "Ethical Compliance" : 40
 ```
 
 ### Ethical Mirror Engine
 
-Симулятор, создающий "этические двойники" кода, трансформирующий потенциально вредоносные паттерны в защитные механизмы.
+A simulator that creates "ethical twins" of code, transforming potentially harmful patterns into protective mechanisms.
 
-#### Архитектура Ethical Mirror Engine
-
-```
-+----------------------------------+
-|      Ethical Mirror Engine       |
-+----------------------------------+
-|                                  |
-|  +----------------------------+  |
-|  |   Code Transformer         |  |
-|  +----------------------------+  |
-|  | - Трансформация кода       |  |
-|  | - Паттерны замены          |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Ethics Analyzer          |  |
-|  +----------------------------+  |
-|  | - Оценка этичности         |  |
-|  | - Выявление проблем        |  |
-|  +----------------------------+  |
-|                                  |
-|  +----------------------------+  |
-|  |   Pattern Manager          |  |
-|  +----------------------------+  |
-|  | - Управление паттернами    |  |
-|  | - Добавление новых         |  |
-|  +----------------------------+  |
-|                                  |
-+----------------------------------+
+```mermaid
+graph LR;
+    A[Original Smart Contract] -->|Simulation| B{Ethical Mirror Engine};
+    B -->|Transform Malicious Code| C[Secure Smart Contract];
 ```
 
-## Взаимодействие компонентов
+## Component Interaction
 
-1. **Neuro-Solidity Auditor** анализирует смарт-контракты и выявляет уязвимости.
-2. **Ethical Mirror Engine** трансформирует код, создавая этические двойники.
-3. **Proof-of-Humanism** валидирует транзакции на основе этического индекса.
+- **Neuro-Solidity Auditor** analyzes smart contracts and detects vulnerabilities.
+- **Ethical Mirror Engine** transforms code, creating ethical versions.
+- **Proof-of-Humanism Consensus** validates transactions based on an ethical index.
 
-## Технологический стек
+## Technology Stack
 
-- **Языки программирования**: TypeScript, Rust, Solidity
-- **Фреймворки**: Solana Web3.js, TensorFlow.js
-- **Инструменты**: AST-парсеры, формальные верификаторы (Coq, Isabelle)
-- **Инфраструктура**: Solana блокчейн, DAO для управления
+- **Programming Languages**: TypeScript, Rust, Solidity
+- **Frameworks**: Solana Web3.js, TensorFlow.js
+- **Tools**: AST parsers, formal verifiers (Coq, Isabelle)
+- **Infrastructure**: Solana blockchain, DAO governance
 
-## Дорожная карта развития
+## Development Roadmap
 
-1. **Фаза 1**: Разработка базовых компонентов и интеграция
-2. **Фаза 2**: Обучение нейросети на верифицированных контрактах
-3. **Фаза 3**: Запуск DAO для управления параметрами консенсуса
-4. **Фаза 4**: Интеграция с экосистемой Solana
-5. **Фаза 5**: Расширение на другие блокчейн-платформы
+1. **Phase 1**: Development of core components and integration.
+2. **Phase 2**: Training the neural network on verified contracts.
+3. **Phase 3**: Launch of DAO for managing consensus parameters.
+4. **Phase 4**: Integration with the Solana ecosystem.
+5. **Phase 5**: Expansion to other blockchain platforms.
+
