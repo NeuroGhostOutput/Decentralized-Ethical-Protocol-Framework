@@ -1,103 +1,125 @@
 # DEP Framework (Decentralized Ethical Protocol Framework)
 
-## Обзор проекта
+## Project Overview
 
-DEP Framework - это инновационная экосистема для Solana, объединяющая передовые технологии нейросетей, этический консенсус и формальную верификацию для создания более безопасной и этичной блокчейн-среды.
+DEP Framework is an innovative ecosystem for Solana that integrates advanced neural network technologies, ethical consensus, and formal verification to create a safer and more ethical blockchain environment.
 
-## Ключевые компоненты
+## Key Components
 
 ### 1. Neuro-Solidity Auditor
 
-Нейросеть, обучаемая на 17,000+ верифицированных контрактах, способная:
+A neural network trained on 17,000+ verified smart contracts, capable of:
 
-- Предсказывать уязвимости через топологический анализ AST-деревьев
-- Генерировать тест-кейсы с покрытием 98.7% edge-cases
-- Автоматически предлагать патчи с формальным доказательством безопасности
+- Predicting vulnerabilities through topological analysis of AST trees
+- Generating test cases with 98.7% edge-case coverage
+- Automatically proposing patches with formal security proofs
+
+```mermaid
+graph TD;
+    A[Smart Contract] -->|AST Parsing| B(Neural Analysis);
+    B -->|Vulnerability Detection| C{Risk Assessment};
+    C -->|Safe| D[Deploy to Blockchain];
+    C -->|Unsafe| E[Generate Security Patch];
+    E --> F[Formal Verification]
+```
 
 ### 2. Proof-of-Humanism Consensus
 
-Новый механизм консенсуса, где валидаторы оценивают транзакции не только на криптографическую корректность, но и на соответствие этическим нормам, определяемым сообществом через DAO.
+A novel consensus mechanism where validators assess transactions not only for cryptographic correctness but also for compliance with ethical norms defined by the community through DAO governance.
+
+```mermaid
+pie title Consensus Decision Breakdown
+    "Cryptographic Validity" : 60
+    "Ethical Compliance" : 40
+```
 
 ### 3. Ethical Mirror Engine
 
-Симулятор, создающий "этические двойники" кода, трансформирующий потенциально вредоносные паттерны в защитные механизмы.
+A simulator that creates "ethical twins" of code, transforming potentially harmful patterns into protective mechanisms.
 
-## План разработки
+```mermaid
+graph LR;
+    X[Original Smart Contract] -->|Simulation| Y{Ethical Mirror Engine};
+    Y -->|Transform Malicious Code| Z[Safe Version of Smart Contract]
+```
 
-1. Разработка DEP Framework с открытым исходным кодом
-2. Интеграция формальной верификации через Coq/Isabelle
-3. Запуск bug bounty программы с призовым фондом в SOL
+## Development Roadmap
 
-## Философский базис
+1. Development of open-source DEP Framework
+2. Integration of formal verification through Coq/Isabelle
+3. Launch of bug bounty program with SOL prize pool
 
-"Настоящая революция в безопасности происходит не через взлом систем, а через создание экосистем, где эксплуатация становится экономически и этически невыгодной."
+## Philosophical Basis
 
-## Компоненты в разработке
+"The true revolution in security does not happen through hacking systems, but through creating ecosystems where exploitation becomes economically and ethically unviable."
 
-- Модуль семантического анализа транзакционных потоков
-- Механизм стимулирования за ответственное раскрытие уязвимостей
-- Образовательный DAO для разработчиков Solana
+## Components in Development
 
-## Установка и запуск
+- Module for semantic analysis of transaction flows
+- Mechanism for incentivizing responsible vulnerability disclosure
+- Educational DAO for Solana developers
 
-### Требования
+## Installation and Setup
 
-- Node.js 14 или выше
-- npm 6 или выше
-- Python 3.8 или выше (для компонента Neuro-Solidity Auditor)
+### Requirements
 
-### Установка
+- Node.js 14 or higher
+- npm 6 or higher
+- Python 3.8 or higher (for the Neuro-Solidity Auditor component)
+
+### Installation
 
 ```bash
-# Клонирование репозитория
+# Clone the repository
 git clone https://github.com/NeuroGhostOutput/DEP-Framework.git
 cd DEP-Framework
 
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Установка Python-зависимостей (для Neuro-Solidity Auditor)
+# Install Python dependencies (for Neuro-Solidity Auditor)
 pip install -r model/requirements.txt
 ```
 
-### Запуск демонстрации
+### Running the Demo
 
-Для запуска демонстрационного примера, показывающего возможности DEP Framework:
+To run a demo showcasing the capabilities of DEP Framework:
 
 ```bash
 npm run demo
 ```
 
-Этот скрипт:
+This script:
 
-1. Проверит наличие необходимых директорий и файлов
-2. Скомпилирует TypeScript-код
-3. Запустит демонстрационный пример, показывающий работу всех компонентов фреймворка
+1. Checks for necessary directories and files
+2. Compiles TypeScript code
+3. Runs a demonstration of all framework components in action
 
-### Разработка
+### Development
 
 ```bash
-# Запуск в режиме разработки с автоматической перекомпиляцией
+# Run in development mode with automatic recompilation
 npm run dev
 
-# Запуск тестов
+# Run tests
 npm test
 
-# Сборка проекта
+# Build the project
 npm run build
 ```
 
-## Документация
+## Documentation
 
-Подробная документация доступна в директории `docs/`:
+Detailed documentation is available in the `docs/` directory:
 
-- [Архитектура](docs/architecture.md) - описание архитектуры DEP Framework
-- [Использование](docs/usage.md) - руководство по использованию компонентов фреймворка
+- [Architecture](docs/architecture.md) - Overview of the DEP Framework architecture
+- [Usage](docs/usage.md) - Guide to using framework components
 
-## Вклад в проект
+## Contributing
 
-Мы приветствуем вклад в развитие DEP Framework! Пожалуйста, ознакомьтесь с [руководством по внесению вклада](CONTRIBUTING.md) перед отправкой pull request.
+We welcome contributions to DEP Framework! Please check out the [contribution guide](CONTRIBUTING.md) before submitting a pull request.
 
-## Лицензия
+## License
 
-Этот проект распространяется под лицензией MIT. См. файл [LICENSE](LICENSE) для получения дополнительной информации.
+This project is distributed under the MIT license. See the [LICENSE](LICENSE) file for more information.
+
