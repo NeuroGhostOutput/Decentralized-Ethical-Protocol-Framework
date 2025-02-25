@@ -71,7 +71,7 @@ graph LR;
 
 ```bash
 # Clone the repository
-git clone https://github.com/NeuroGhostOutput/DEP-Framework.git
+git clone https://github.com/NeuroGhostOutput/Decentralized-Ethical-Protocol-Framework.git
 cd DEP-Framework
 
 # Install dependencies
