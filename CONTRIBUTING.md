@@ -1,112 +1,114 @@
-# Руководство по вкладу в DEP Framework
+Вот ваш перевод:  
 
-Спасибо за интерес к DEP Framework! Мы рады любому вкладу в развитие проекта, будь то исправление ошибок, добавление новых функций или улучшение документации.
+# Contribution Guide for DEP Framework  
 
-## Содержание
+Thank you for your interest in DEP Framework! We appreciate any contributions to the project, whether it’s fixing bugs, adding new features, or improving documentation.  
 
-1. [Кодекс поведения](#кодекс-поведения)
-2. [Как внести вклад](#как-внести-вклад)
-3. [Настройка окружения разработки](#настройка-окружения-разработки)
-4. [Стиль кода](#стиль-кода)
-5. [Тестирование](#тестирование)
-6. [Отправка изменений](#отправка-изменений)
-7. [Процесс рассмотрения](#процесс-рассмотрения)
-8. [Сообщение об ошибках](#сообщение-об-ошибках)
+## Table of Contents  
 
-## Кодекс поведения
+1. [Code of Conduct](#code-of-conduct)  
+2. [How to Contribute](#how-to-contribute)  
+3. [Setting Up the Development Environment](#setting-up-the-development-environment)  
+4. [Code Style](#code-style)  
+5. [Testing](#testing)  
+6. [Submitting Changes](#submitting-changes)  
+7. [Review Process](#review-process)  
+8. [Reporting Issues](#reporting-issues)  
 
-Этот проект придерживается [Кодекса поведения участников](https://www.contributor-covenant.org/ru/version/2/0/code_of_conduct/). Участвуя в проекте, вы соглашаетесь соблюдать его условия.
+## Code of Conduct  
 
-## Как внести вклад
+This project follows the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/). By participating, you agree to abide by its terms.  
 
-1. Форкните репозиторий
-2. Создайте ветку для ваших изменений (`git checkout -b feature/amazing-feature`)
-3. Внесите изменения
-4. Убедитесь, что все тесты проходят (`npm test`)
-5. Зафиксируйте изменения (`git commit -m 'Add some amazing feature'`)
-6. Отправьте изменения в ваш форк (`git push origin feature/amazing-feature`)
-7. Создайте Pull Request
+## How to Contribute  
 
-## Настройка окружения разработки
+1. Fork the repository  
+2. Create a branch for your changes (`git checkout -b feature/amazing-feature`)  
+3. Make your changes  
+4. Ensure all tests pass (`npm test`)  
+5. Commit your changes (`git commit -m 'Add some amazing feature'`)  
+6. Push your changes to your fork (`git push origin feature/amazing-feature`)  
+7. Create a Pull Request  
 
-1. Клонируйте репозиторий:
+## Setting Up the Development Environment  
+
+1. Clone the repository:  
    ```bash
-   git clone https://github.com/dep-framework/dep-framework.git
-   cd dep-framework
-   ```
+   git clone https://github.com/dep-framework/dep-framework.git  
+   cd dep-framework  
+   ```  
 
-2. Установите зависимости:
+2. Install dependencies:  
    ```bash
-   npm install
-   ```
+   npm install  
+   ```  
 
-3. Скопируйте файл `.env.example` в `.env` и заполните необходимые значения:
+3. Copy the `.env.example` file to `.env` and fill in the necessary values:  
    ```bash
-   cp .env.example .env
-   ```
+   cp .env.example .env  
+   ```  
 
-4. Соберите проект:
+4. Build the project:  
    ```bash
-   npm run build
-   ```
+   npm run build  
+   ```  
 
-5. Запустите тесты, чтобы убедиться, что всё работает:
+5. Run tests to verify everything works:  
    ```bash
-   npm test
-   ```
+   npm test  
+   ```  
 
-## Стиль кода
+## Code Style  
 
-Мы используем ESLint и Prettier для поддержания единого стиля кода. Перед отправкой изменений убедитесь, что ваш код соответствует стилю:
+We use ESLint and Prettier to maintain a consistent code style. Before submitting changes, ensure your code follows the style guide:  
 
 ```bash
-npm run lint
-```
+npm run lint  
+```  
 
-Основные правила стиля:
-- Используйте TypeScript для всего нового кода
-- Следуйте принципам SOLID, DRY и KISS
-- Пишите документацию для публичных API
-- Используйте асинхронные функции с async/await вместо колбэков
-- Добавляйте типы для всех параметров и возвращаемых значений
+Key style guidelines:  
+- Use TypeScript for all new code  
+- Follow SOLID, DRY, and KISS principles  
+- Write documentation for public APIs  
+- Use async/await instead of callbacks  
+- Provide type definitions for all parameters and return values  
 
-## Тестирование
+## Testing  
 
-Для каждой новой функции или исправления ошибки должны быть написаны тесты. Мы используем Jest для тестирования:
-
-```bash
-npm test
-```
-
-Для запуска тестов с покрытием:
+Every new feature or bug fix should include tests. We use Jest for testing:  
 
 ```bash
-npm test -- --coverage
-```
+npm test  
+```  
 
-## Отправка изменений
+To run tests with coverage:  
 
-1. Убедитесь, что ваш код соответствует стилю и все тесты проходят
-2. Обновите документацию, если необходимо
-3. Обновите CHANGELOG.md, если ваши изменения значительны
-4. Отправьте Pull Request с описанием ваших изменений
+```bash
+npm test -- --coverage  
+```  
 
-## Процесс рассмотрения
+## Submitting Changes  
 
-1. Мейнтейнеры проекта рассмотрят ваш Pull Request
-2. Если есть замечания, они будут оставлены в комментариях
-3. После внесения необходимых изменений и одобрения, ваш Pull Request будет принят
+1. Ensure your code follows the style guide and passes all tests  
+2. Update documentation if needed  
+3. Update `CHANGELOG.md` if your changes are significant  
+4. Submit a Pull Request with a description of your changes  
 
-## Сообщение об ошибках
+## Review Process  
 
-Если вы нашли ошибку, пожалуйста, создайте Issue с подробным описанием:
+1. Project maintainers will review your Pull Request  
+2. If any changes are required, they will be requested in comments  
+3. Once all requested changes are made and approved, your Pull Request will be merged  
 
-1. Шаги для воспроизведения ошибки
-2. Ожидаемое поведение
-3. Фактическое поведение
-4. Скриншоты, если применимо
-5. Информация о вашем окружении (ОС, версия Node.js, и т.д.)
+## Reporting Issues  
 
----
+If you find a bug, please create an Issue with detailed information:  
 
-Спасибо за ваш вклад в DEP Framework!
+1. Steps to reproduce the issue  
+2. Expected behavior  
+3. Actual behavior  
+4. Screenshots, if applicable  
+5. Environment details (OS, Node.js version, etc.)  
+
+---  
+
+Thank you for contributing to the DEP Framework!
