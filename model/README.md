@@ -1,57 +1,57 @@
-# Neuro-Solidity Auditor - Модель для аудита смарт-контрактов
+# Neuro-Solidity Auditor - Smart Contract Auditing Model  
 
-Этот модуль содержит нейросетевую модель для автоматического аудита смарт-контрактов Solidity. Модель обучена на более чем 17,000 верифицированных контрактах и способна обнаруживать различные типы уязвимостей.
+This module contains a neural network model for automatic auditing of Solidity smart contracts. The model has been trained on over 17,000 verified contracts and can detect various types of vulnerabilities.  
 
-## Возможности
+## Features  
 
-- **Предсказание уязвимостей** через топологический анализ AST-деревьев
-- **Генерация тест-кейсов** с покрытием 98.7% edge-cases
-- **Автоматическое предложение патчей** с формальным доказательством безопасности
+- **Vulnerability prediction** through topological analysis of AST trees  
+- **Test case generation** with 98.7% edge-case coverage  
+- **Automatic patch recommendations** with formal security verification  
 
-## Установка
+## Installation  
 
-### Требования
+### Requirements  
 
-- Python 3.8 или выше
-- Node.js 14 или выше
-- Solidity 0.8.0 или выше
+- Python 3.8 or later  
+- Node.js 14 or later  
+- Solidity 0.8.0 or later  
 
-### Установка зависимостей
+### Installing Dependencies  
 
 ```bash
-# Установка Python-зависимостей
-pip install -r requirements.txt
+# Install Python dependencies
+pip install -r requirements.txt  
 
-# Установка Solidity компилятора
-solc-select install 0.8.17
-solc-select use 0.8.17
+# Install Solidity compiler
+solc-select install 0.8.17  
+solc-select use 0.8.17  
 ```
 
-## Использование
+## Usage  
 
-### Через TypeScript API
+### TypeScript API  
 
 ```typescript
 import { NeuroSolidityAuditor } from '../src/neuro-solidity-auditor';
 
 async function main() {
-  // Инициализация аудитора
+  // Initialize auditor
   const auditor = new NeuroSolidityAuditor();
   await auditor.initialize();
   
-  // Аудит контракта
+  // Audit a contract
   const result = await auditor.auditContract('path/to/contract.sol');
-  console.log(`Найдено ${result.vulnerabilities.length} уязвимостей`);
-  console.log(`Общий скор безопасности: ${result.score}/100`);
+  console.log(`Found ${result.vulnerabilities.length} vulnerabilities`);
+  console.log(`Overall security score: ${result.score}/100`);
   
-  // Генерация тест-кейсов
+  // Generate test cases
   const testCases = await auditor.generateTestCases('path/to/contract.sol');
-  console.log(`Сгенерировано ${testCases.length} тест-кейсов`);
+  console.log(`Generated ${testCases.length} test cases`);
   
-  // Генерация патча для первой уязвимости
+  // Generate a patch for the first vulnerability
   if (result.vulnerabilities.length > 0) {
     const patch = await auditor.generatePatch(result.vulnerabilities[0], 'path/to/contract.sol');
-    console.log('Предлагаемый патч:');
+    console.log('Suggested patch:');
     console.log(patch);
   }
 }
@@ -59,84 +59,84 @@ async function main() {
 main().catch(console.error);
 ```
 
-### Через Python API
+### Python API  
 
 ```python
 import json
 from model_bridge import audit_contract, generate_test_cases, generate_patch
 
-# Аудит контракта
+# Audit a contract
 result = audit_contract('path/to/contract.sol')
-print(f"Найдено {len(result['vulnerabilities'])} уязвимостей")
-print(f"Общий скор безопасности: {(1 - result['vulnerability_score']) * 100:.1f}/100")
+print(f"Found {len(result['vulnerabilities'])} vulnerabilities")
+print(f"Overall security score: {(1 - result['vulnerability_score']) * 100:.1f}/100")
 
-# Чтение контракта
+# Read contract file
 with open('path/to/contract.sol', 'r') as f:
     contract_code = f.read()
 
-# Генерация тест-кейсов
+# Generate test cases
 test_cases = generate_test_cases(contract_code)
-print(f"Сгенерировано {len(test_cases)} тест-кейсов")
+print(f"Generated {len(test_cases)} test cases")
 
-# Генерация патча для первой уязвимости
+# Generate a patch for the first vulnerability
 if result['vulnerabilities']:
     vulnerability = result['vulnerabilities'][0]
     patch = generate_patch(contract_code, vulnerability)
-    print('Предлагаемый патч:')
+    print('Suggested patch:')
     print(patch)
 ```
 
-## Архитектура модели
+## Model Architecture  
 
-Модель использует комбинацию статического анализа и машинного обучения для обнаружения уязвимостей в смарт-контрактах:
+The model combines static analysis and machine learning to detect vulnerabilities in smart contracts:  
 
-1. **Статический анализ**:
-   - Парсинг контракта в AST (Abstract Syntax Tree)
-   - Анализ потока данных и потока управления
-   - Поиск известных паттернов уязвимостей
+1. **Static Analysis**  
+   - Parsing the contract into an AST (Abstract Syntax Tree)  
+   - Analyzing data flow and control flow  
+   - Detecting known vulnerability patterns  
 
-2. **Машинное обучение**:
-   - Извлечение признаков из AST и байт-кода
-   - Классификация уязвимостей с помощью нейронной сети
-   - Оценка вероятности и серьезности уязвимостей
+2. **Machine Learning**  
+   - Extracting features from AST and bytecode  
+   - Classifying vulnerabilities using a neural network  
+   - Estimating the probability and severity of vulnerabilities  
 
-3. **Генерация патчей**:
-   - Анализ контекста уязвимости
-   - Генерация исправлений на основе лучших практик
-   - Верификация исправлений с помощью формальных методов
+3. **Patch Generation**  
+   - Context analysis of the vulnerability  
+   - Generating fixes based on best practices  
+   - Verifying fixes using formal methods  
 
-## Типы обнаруживаемых уязвимостей
+## Types of Detected Vulnerabilities  
 
-- **Reentrancy** - уязвимость повторного входа
-- **Integer Overflow/Underflow** - переполнение целочисленных типов
-- **Unchecked Return Values** - необработанные возвращаемые значения
-- **tx.origin Authentication** - небезопасная аутентификация через tx.origin
-- **Unsecured Self-Destruct** - незащищенный вызов selfdestruct
-- **Unprotected Ether Withdrawal** - незащищенный вывод эфира
-- **Uninitialized Storage Pointers** - неинициализированные указатели хранилища
-- **Floating Pragma** - плавающая версия pragma
-- **Unprotected DELEGATECALL** - незащищенный вызов DELEGATECALL
-- **Front-Running** - уязвимость к фронтраннингу
+- **Reentrancy** - reentrancy attack vulnerability  
+- **Integer Overflow/Underflow** - integer type overflow  
+- **Unchecked Return Values** - unhandled return values  
+- **tx.origin Authentication** - insecure authentication via `tx.origin`  
+- **Unsecured Self-Destruct** - unprotected `selfdestruct` call  
+- **Unprotected Ether Withdrawal** - insecure Ether withdrawal  
+- **Uninitialized Storage Pointers** - uninitialized storage pointers  
+- **Floating Pragma** - floating pragma version  
+- **Unprotected DELEGATECALL** - unprotected `DELEGATECALL` execution  
+- **Front-Running** - vulnerability to front-running attacks  
 
-## Обучение модели
+## Model Training  
 
-Модель обучена на более чем 17,000 верифицированных контрактах из Ethereum Mainnet, Binance Smart Chain и других сетей. Процесс обучения включает:
+The model has been trained on over 17,000 verified contracts from Ethereum Mainnet, Binance Smart Chain, and other networks. The training process includes:  
 
-1. Сбор и предобработка данных
-2. Извлечение признаков из AST и байт-кода
-3. Обучение нейронной сети на размеченных данных
-4. Валидация и тестирование на отложенной выборке
+1. Data collection and preprocessing  
+2. Feature extraction from AST and bytecode  
+3. Training the neural network on labeled data  
+4. Validation and testing on a holdout dataset  
 
-Для обучения собственной модели используйте скрипт `train_model.py`:
+To train a custom model, use the `train_model.py` script:  
 
 ```bash
 python train_model.py --data-dir path/to/contracts --epochs 100 --batch-size 32
 ```
 
-## Лицензия
+## License  
 
-Этот проект распространяется под лицензией MIT. См. файл LICENSE для получения дополнительной информации.
+This project is released under the MIT License. See the LICENSE file for more details.  
 
-## Авторы
+## Authors  
 
-- DEP Framework Team
+- DEP Framework Team  
